@@ -13,7 +13,7 @@ import {
 import { themeContext } from "../../providers/ThemeProvider";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
+import Image from "next/image";
 const Signin = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const [users, setUsers] = useState([]);
@@ -100,14 +100,14 @@ const Signin = () => {
   return (
     <div className="signupCntn">
       <Head>
-        <title>Jelentkezzen be</title>
+        <title>Sign In</title>
         <meta property="og:title" content="Sign In" />
       </Head>
       <div className="leftSide">
         <video src="signup_vid2.mp4" autoPlay loop muted></video>
         <div className="overlay">
           <h2>
-            &quot;Először nézz -<br /> Aztán ugrás.&quot;
+            &quot;Look First -<br /> Then Leap.&quot;
           </h2>
           <p>
             <span>--</span> Alex Hennold <span>--</span>
@@ -115,11 +115,17 @@ const Signin = () => {
         </div>
       </div>
       <div className="righside">
+        <Link href={"/"}>
+          <Image
+            src="/logo1.svg"
+            alt="logo"
+            width={100}
+            height={100}
+            style={{ marginLeft: "170px", marginTop: "30px" }}
+          />
+        </Link>
         <form onSubmit={handleSubmit}>
-          <Link href={"/"} className="topsignuplink">
-            <img src="/xtbLogo.svg" alt="logo" />
-          </Link>
-          <h1>Jelentkezzen be e-mailben</h1>
+          <h1>Sign In with Email</h1>
           <div className="inputcontainer">
             <div className="inputCntn">
               <input
@@ -148,7 +154,7 @@ const Signin = () => {
                 }}
                 type={`${passwordShow ? "text" : "password"}`}
                 name="password"
-                placeholder="Jelszó"
+                placeholder="Password"
                 required
               />
               <button
@@ -177,30 +183,35 @@ const Signin = () => {
                   )}
                 </div>
                 <div className="verification_status">
-                  {verify === "Default" && <p>Emberi ellenőrzés</p>}
-                  {verify === "verifying" && <p>Ellenőrzés...</p>}
-                  {verify === "verified" && <p>Ellenőrzött</p>}
+                  {verify === "Default" && <p>Human Verification</p>}
+                  {verify === "verifying" && <p>Verifying...</p>}
+                  {verify === "verified" && <p>Verified</p>}
                 </div>
               </div>
               <div className="service_provider">
                 <p>
-                  Protected by <img src="/cloudflare.png" alt="cloudflare" />
+                  Protected by{" "}
+                  <Image
+                    src="/cloudflare.png"
+                    alt="cloudflare"
+                    width={40}
+                    height={40}
+                  />
                 </p>
               </div>
             </div>
             {errMsg !== "" && <p className="errorMsg">{errMsg}</p>}
             <label className="form-control2">
-              <input type="checkbox" name="checkbox" required /> Emlékezz rám
+              <input type="checkbox" name="checkbox" required /> Remember me
             </label>
 
             <button type="submit" className="fancyBtn">
-            Jelentkezzen be
+              Sign In
             </button>
           </div>
           <p className="haveanaccount">
-  Nincs fiókod? <Link href={"/signup"}>Regisztrálj</Link>
-</p>
-
+            Don&apos;t have an account? <Link href={"/signup"}>Sign Up</Link>
+          </p>
         </form>
       </div>
     </div>

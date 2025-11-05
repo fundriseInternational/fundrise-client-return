@@ -39,7 +39,7 @@
 
 .aboutMainCtn .sect1 {
   background-image: linear-gradient(to bottom, #00061384, 60%, var(--dark-clr1)),
-    url(/bgimg_1.jpg);
+    url(/helpImg.jpg);
 }
 
 .sect1 {

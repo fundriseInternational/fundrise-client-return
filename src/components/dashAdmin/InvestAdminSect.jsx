@@ -65,7 +65,7 @@ const InvestAdminSect = ({ setInvestData, setProfileState, investments }) => {
                   <div className="unitheadsect">{idx + 1}</div>
                   <div className="unitheadsect">{elem?.plan}</div>
                   <div className="unitheadsect">
-                    €{elem?.capital.toLocaleString()}
+                    ${elem?.capital.toLocaleString()}
                   </div>
                   <div className="unitheadsect">
                     <span
@@ -84,7 +84,7 @@ const InvestAdminSect = ({ setInvestData, setProfileState, investments }) => {
                   </div>
                   <div className="unitheadsect">{elem?.roi}</div>
                   <div className="unitheadsect">
-                    €{parseInt(elem?.bonus).toLocaleString()}
+                    ${parseInt(elem?.bonus).toLocaleString()}
                   </div>
                 </div>
               ))}

@@ -36,67 +36,62 @@ const WithdrawalPayment = ({
       });
   };
 
-const handleTransacConfirmation = () => {
-  addDoc(colRef, {
-    ...withdrawData,
-    date: new Date().toISOString(),
-    widthrawalFee: `${Number(withdrawData?.amount / 10 )} €`,
-    idnum: currentUser?.idnum,
-  });
-  setProfileState("Withdrawals");
-};
+  const handleTransacConfirmation = () => {
+    addDoc(colRef, {
+      ...withdrawData,
+      date: new Date().toISOString(),
+      widthrawalFee: `${Number(withdrawData?.amount / 10)} $`,
+      idnum: currentUser?.idnum,
+    });
+    setProfileState("Withdrawals");
+  };
 
-return (
-  <div className="paymentSect">
-    <h2>Fizetés Megerősítése</h2>
-    <div className="mainPaymentSect">
-      <h3>
-        Innen a tranzakció a pénzügyi osztályon folytatódik, akik lépésről
-        lépésre végigvezetnek a stresszmentes tranzakció érdekében. Küldjön
-        pontosan{" "}
-        <span>
-          {`${Number(withdrawData?.amount / 10)} €`}
-        </span>{" "}
-        az Ön számára megadott bankszámlára vagy címre.
-      </h3>
+  return (
+    <div className="paymentSect">
+      <h2>Confirm Payment</h2>
+      <div className="mainPaymentSect">
+        <h3>
+          {" "}
+          From here the transaction continues with the finance department, the
+          will guide you step by step to make a stress free transaction . Send
+          exactly <span>{`${Number(withdrawData?.amount / 10)} $`}</span> to the
+          bank account or address provided to you.
+        </h3>
+        <p>
+          ********************************************
+          <span
+            onClick={() => {
+              copyToClipboard("");
+            }}
+          >
+            {copystate} <i className="icofont-ui-copy"></i>
+          </span>
+        </p>
+      </div>
       <p>
-        ********************************************
-        <span
-          onClick={() => {
-            copyToClipboard("");
-          }}
-        >
-          {copystate} <i className="icofont-ui-copy"></i>
-        </span>
+        Confirm the transaction after the amount has been transferred while we
+        complete the process. This may take a few minutes to several hours.
       </p>
+      <p>
+        The company <strong>Bank Account Number </strong> and{" "}
+        <strong>Wallet Address</strong>
+        are not publicly stated here for security reasons
+        <strong>PLEASE CLICK ON THE FINANCE DEPT BUTTON BELOW</strong> to
+        continue your transaction, thank you.
+      </p>
+      <button
+        className="financeBtn"
+        onClick={() => {
+          window.open("https://wa.me/16102090728", "_blank");
+        }}
+      >
+        Finance Department
+      </button>
+      <button type="button" onClick={handleTransacConfirmation}>
+        Confirm Transaction
+      </button>
     </div>
-    <p>
-      Erősítse meg a tranzakciót, miután az összeget átutalták, miközben mi
-      befejezzük a folyamatot. Ez néhány perctől több óráig is eltarthat.
-    </p>
-    <p>
-      A cég <strong>Bankszámlaszáma </strong> és <strong>Tárca Címe</strong> biztonsági
-      okokból nem kerül nyilvánosságra.{" "}
-      <strong>
-        KÉRJÜK, KATTINTSON AZ ALÁBBI PÉNZÜGYI OSZTÁLY GOMBRA
-      </strong>{" "}
-      a tranzakció folytatásához. Köszönjük.
-    </p>
-    <button
-      className="financeBtn"
-      onClick={() => {
-        window.open("https://wa.me/36306154461", "_blank");
-      }}
-    >
-      Pénzügyi Osztály
-    </button>
-    <button type="button" onClick={handleTransacConfirmation}>
-      Tranzakció Megerősítése
-    </button>
-  </div>
-);
-
-
+  );
 };
 
 export default WithdrawalPayment;

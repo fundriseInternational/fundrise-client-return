@@ -36,9 +36,9 @@ const WithdrawalSect = ({
     <div className="widthdrawMainSect">
       <div className="topmostWithdraw">
         <h2>
-          Teljes egyenleg:{" "}
+          Total Balance:{" "}
           <span>
-            €
+            $
             {`${(
               currentUser?.bonus +
               totalROI +
@@ -56,17 +56,17 @@ const WithdrawalSect = ({
             });
           }}
         >
-          Kattintson ide a pénzfelvételhez
+          Click here to widthraw funds
         </button>
       </div>
       {withdrawals.length > 0 ? (
         <div className="historyTable">
           <div className="investmentTablehead header">
-            <div className="unitheadsect">Sorszám</div>
-            <div className="unitheadsect">Tranzakció azonosító</div>
-            <div className="unitheadsect">Összeg</div>
-            <div className="unitheadsect">Állapot</div>
-            <div className="unitheadsect">Fizetési mód</div>
+            <div className="unitheadsect">S/N</div>
+            <div className="unitheadsect">Transaction ID</div>
+            <div className="unitheadsect">Amount</div>
+            <div className="unitheadsect">Status</div>
+            <div className="unitheadsect">Payment Option</div>
           </div>
           {withdrawals.map((elem, idx) => (
             <div
@@ -75,7 +75,7 @@ const WithdrawalSect = ({
             >
               <div className="unitheadsect">{idx + 1}</div>
               <div className="unitheadsect">{elem?.id}</div>
-              <div className="unitheadsect">€{elem?.amount}</div>
+              <div className="unitheadsect">${elem?.amount}</div>
               <div className="unitheadsect">
                 <span
                   style={{
@@ -84,7 +84,7 @@ const WithdrawalSect = ({
                     }`,
                   }}
                 >
-                  {elem?.status === "Pending" ? "Függőben" : "Teljesítve"}
+                  {elem?.status}
                 </span>
               </div>
               <div className="unitheadsect">{elem?.paymentOption}</div>
@@ -95,7 +95,7 @@ const WithdrawalSect = ({
         <div className="emptyTable">
           <i className="icofont-exclamation-tringle"></i>
           <p>
-            Jelenleg nincs pénzfelvételi előzménye.{" "}
+            Your withdrawal history is currently empty.{" "}
             <button
               onClick={() => {
                 setWidgetState({
@@ -104,45 +104,45 @@ const WithdrawalSect = ({
                 });
               }}
             >
-              Vegyen fel most
+              Withdraw now
             </button>
           </p>
         </div>
       )}
       <div className="widthdrawalGuides">
-        <h2>Pénzfelvételi Útmutató</h2>
+        <h2>Withdrawal Guidelines</h2>
         <div className="guides">
           <p>
-            - Pénzfelvételi folyamatunkat úgy alakítottuk ki, hogy olyan egyszerű
-            legyen, mint a befizetési folyamat. A pénzfelvétel megkezdéséhez
-            először válassza ki a kívánt pénzfelvételi módot, majd írja be a
-            felvenni kívánt összeget, és kattintson a &quot;Folytatás&quot;
-            gombra.
+            - We have designed our withdrawal process to be as easy as our
+            funding process. To begin the withdrawal process first select your
+            preferred withdrawal method and then type in the amount you want to
+            withdraw and click &quot;Proceed&quot;.
           </p>
           <p>
-            - Két (2) pénzfelvételi módot biztosítunk (Bitcoin, Banki átutalás).
+            - We provides two (2) withdrawal methods (Bitcoin, Bank transfer
+            Payment).
           </p>
           <p>
-            - Pénzfelvételi kérelmek bármikor benyújthatók ezen a weboldalon
-            keresztül. A kérelmeket azonnal feldolgozzuk, az érintett pénzintézetek
-            nyitvatartási ideje alatt.
+            - Requests for withdrawals can be made at any time via this website.
+            The requests will be processed immediately, and during the relevant
+            financial institutions&apos; business hours.
           </p>
           <p>
-            - A pénzfelvétel az aktuális számlaegyenleg összegéig lehetséges (A
-            minimális pénzfelvételi összeg €200).
+            - Withdrawals are capped at the amount of funds that are currently
+            in the account (Minimum withdrawal amount is $200).
           </p>
           <p>
-            - Pénzfelvételhez feldolgozási díjat kell fizetni, mielőtt a
-            pénzfelvétel végrehajtható lenne.
+            - To make a widthrawal, a withdrawal processing fee is required to
+            paid before a withdrawal can be made usually.
           </p>
           <p>
-            - A pénzfelvételi kérelmeket a lehető leggyorsabban kezeljük.
+            - Withdrawal requests are addressed and handled as quickly as
+            possible.
           </p>
         </div>
       </div>
     </div>
   );
-  
 };
 
 export default WithdrawalSect;

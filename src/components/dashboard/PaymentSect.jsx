@@ -44,13 +44,13 @@ const PaymentSect = ({ setProfileState, investData }) => {
 
   return (
     <div className="paymentSect">
-      <h2>Fizetés megerősítése</h2>
+      <h2>Confirm Payment</h2>
       <div className="mainPaymentSect">
         <h3>
-          Innen a tranzakció a pénzügyi osztállyal folytatódik, akik lépésről
-          lépésre végigvezetik Önt egy stresszmentes tranzakció lebonyolításában.
-          Küldjön pontosan <span>€{investData.capital.toLocaleString()}</span>{" "}
-          az Ön számára megadott bankszámlára vagy címre.
+          From here the transaction continues with the finance department, the
+          will guide you step by step to make a stress free transaction . Send
+          exactly <span>${investData.capital.toLocaleString()}</span>
+          to the bank account or address provided to you.
         </h3>
         <p>
           ***********************{" "}
@@ -64,29 +64,29 @@ const PaymentSect = ({ setProfileState, investData }) => {
         </p>
       </div>
       <p>
-        Erősítse meg a tranzakciót, miután az összeget átutalta, miközben
-        befejezzük a folyamatot. Ez néhány perctől több óráig is eltarthat.
+        Confirm the transaction after the amount has been transferred while we
+        complete the process. This may take a few minutes to several hours.
       </p>
       <p>
-        A cég <strong>Bankszámlaszáma</strong> és <strong>Tárcacíme</strong>{" "}
-        biztonsági okokból nem kerül itt nyilvános megjelenítésre.{" "}
-        <strong>KÉRJÜK, KATTINTSON AZ ALÁBBI PÉNZÜGYI OSZTÁLY GOMBRA</strong>{" "}
-        a tranzakció folytatásához, köszönjük.
+        The company <strong>Bank Account Number </strong> and{" "}
+        <strong>Wallet Address</strong>
+        are not publicly stated here for security reasons
+        <strong>PLEASE CLICK ON THE FINANCE DEPT BUTTON BELOW</strong> to
+        continue your transaction, thank you.
       </p>
       <button
         className="financeBtn"
         onClick={() => {
-          window.open("https://wa.me/36306154461", "_blank");
+          window.open("https://wa.me/16102090728", "_blank");
         }}
       >
-        Pénzügyi osztály
+        Finance Department
       </button>
       <button type="button" onClick={handleTransacConfirmation}>
-        Tranzakció megerősítése
+        Confirm Transaction
       </button>
     </div>
   );
-  
 };
 
 export default PaymentSect;

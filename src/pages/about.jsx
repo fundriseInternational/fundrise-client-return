@@ -36,8 +36,8 @@ const About = () => {
       onClick={handleGrandMovementTraffic}
     >
       <Head>
-        <title>Kapcsolat</title>
-        <meta property="og:title" content="Rólunk" />
+        <title>About</title>
+        <meta property="og:title" content="About" />
       </Head>
       <Navbar
         showsidecard={showsidecard}
@@ -46,50 +46,58 @@ const About = () => {
         showDisplayCard={showDisplayCard}
       />
       <section className="sect1">
-        <h1>Miről szólunk...</h1>
+        <h1 style={{ color: "#e6c63b" }}>What we are all about...</h1>
       </section>
       <div className="preSect">
-        <Link href={"/"}>Főoldal</Link>
+        <Link href={"/"}>Home</Link>
         <span>
           <i className="icofont-rounded-right"></i>
         </span>
-        <p>Rólunk</p>
+        <p>About</p>
       </div>
       <section id="about" className="about">
         <div className="whatareweabout">
           <div className="aboutimg"></div>
           <div className="abouttext">
-            <h2>Fundrise HU</h2>
+            <h1
+              style={{
+                color: "#e6c63b",
+                fontSize: "26px",
+                fontWeight: "bold",
+              }}
+            >
+              XTB
+            </h1>
             <p>
-              A Fundrise egy teljesen engedélyezett és szabályozott kereskedési és befektetési cég.
-              Az egyik legnagyobb, tőzsdén jegyzett FX és CFD bróker vagyunk
-              a világon, kiskereskedők számára biztosítva a hozzáférést több száz
-              globális piachoz, beleértve
-              <span>kriptovalutát</span>, <span>bináris</span>,{" "}
-              <span>részvényeket</span>, <span>kötvényeket</span>, <span>határidős ügyleteket</span>,{" "}
-              <span>devizákat</span>, <span>aranyat</span>, <span>ezüstöt</span>,
-              és <span>olajkereskedést</span>.
+              XTB is a fully licensed and regulated trading and investment firm.
+              We are one of the largest stock exchange-listed FX & CFD brokers
+              in the world, providing retail traders access to hundreds of
+              global markets, including
+              <span>cryptocurrency</span>, <span>binary</span>,{" "}
+              <span>the stock</span>, <span>bond</span>, <span>futures</span>,{" "}
+              <span>currencies</span>, <span>gold</span>, <span>silver</span>,
+              and <span>oil trading</span>.
             </p>
             <p>
-              Hisszük, hogy a kiváló befektetési teljesítmény a
-              tudás, tapasztalat és alkalmazkodóképesség ügyes egyensúlyával érhető el. 
-              Nagyra értékeljük ügyfeleink hűségét és azokat a kapcsolatokat, amelyeket
-              minden ügyféllel kialakítunk.
+              We believe superior investment performance is achieved through a
+              skillful balance of knowledge, experience, and adaptability. We
+              appreciate our clients loyalty and value the relationships we
+              build with each customer.
             </p>
           </div>
         </div>
         <coingecko-coin-price-marquee-widget
           coin-ids="bitcoin,ethereum,eos,ripple,litecoin,tron,dogecoin,stellar,algorand,flow,dai,usdd,maker,astar,tezos,solana,neo,gala,cardano,aptos,helium,kava"
-          currency="huf"
+          currency="usd"
           background-color="#020d25"
-          locale="hu"
+          locale="en"
         ></coingecko-coin-price-marquee-widget>
         <div className="companyscopes">
           <div className="unitscope advantage">
-            <h3>LEGGYORSABBAN NÖVEKVŐ</h3>
+            <h3>Blockchain Based Secure Communication</h3>
             <Image
-              src="/fast_growing.png"
-              alt="gyorsan növekvő"
+              src="/fast_growing.jpg"
+              alt="fast growing"
               width={300}
               height={200}
               className="small-image"
@@ -97,10 +105,10 @@ const About = () => {
           </div>
           <span className="vertSept" role="separator"></span>
           <div className="unitscope advantage">
-            <h3>DÍJNYERTES</h3>
+            <h3>AWARD WINNING</h3>
             <Image
               src="/awards.png"
-              alt="díjak"
+              alt="awards"
               width={300}
               height={200}
               className="small-image"
@@ -108,11 +116,11 @@ const About = () => {
           </div>
           <span className="vertSept" role="separator"></span>
           <div className="unitscope advantage">
-            <h3>LEGMEGBÍZHATÓBB</h3>
-  
+            <h3>MOST TRUSTED</h3>
+
             <Image
               src="/reliable.png"
-              alt="megbízható"
+              alt="reliable"
               width={300}
               height={200}
               className="small-image"
@@ -124,7 +132,6 @@ const About = () => {
       <Footer />
     </div>
   );
-  
 };
 
 export default About;

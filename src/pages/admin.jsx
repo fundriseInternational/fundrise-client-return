@@ -1,26 +1,20 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import Link from "next/link";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../database/firebaseConfig";
-import {
-  getFirestore,
-  collection,
-  query,
-  where,
-  onSnapshot,
-} from "firebase/firestore";
+import { collection, query, where, onSnapshot } from "firebase/firestore";
 import { themeContext } from "../../providers/ThemeProvider";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import Image from "next/image";
+
+// ✅ Import the *already initialized* Firestore instance
+import { db } from "../database/firebaseConfig";
 
 const Signin = () => {
   const [passwordShow, setPasswordShow] = useState(false);
   const [users, setUsers] = useState([]);
   const [errMsg, setErrMsg] = useState("");
-
   const [verify, setVerify] = useState("Default");
   const inputRef = useRef(null);
-
   const router = useRouter();
 
   const ctx = useContext(themeContext);
@@ -31,9 +25,9 @@ const Signin = () => {
     password: "",
   });
 
-  initializeApp(firebaseConfig);
-
-  const db = getFirestore();
+  // ❌ REMOVE these lines — they caused the error
+  // initializeApp(firebaseConfig);
+  // const db = getFirestore();
 
   const colRef = collection(db, "admin");
 
@@ -48,6 +42,7 @@ const Signin = () => {
       inputRef.current = true;
     }
   };
+
   const removeErr = () => {
     setTimeout(() => {
       setErrMsg("");
@@ -55,18 +50,15 @@ const Signin = () => {
   };
 
   useEffect(() => {
-    if (
-      Object.keys(JSON.parse(localStorage.getItem("activeUser")) || {}).length >
-      0
-    ) {
+    const activeUser = JSON.parse(localStorage.getItem("activeUser") || "{}");
+    if (Object.keys(activeUser).length > 0) {
       setErrMsg("An account is currently logged in");
       removeErr();
     }
   }, []);
 
   const getSingleDoc = (e) => {
-    // Create a query to find a document where adminId matches the input
-    const q = query(colRef, where("adminId", "==", `${toLocaleStorage.email}`));
+    const q = query(colRef, where("adminId", "==", toLocaleStorage.email));
 
     let admins = [];
     onSnapshot(q, (snapshot) => {
@@ -74,8 +66,7 @@ const Signin = () => {
         admins.push({ ...doc.data(), id: doc.id });
       });
 
-      // Check if the password entered matches the password in Firestore
-      const activeAdmin = admins?.filter(
+      const activeAdmin = admins.filter(
         (elem) => elem.password === toLocaleStorage.password
       );
 
@@ -83,21 +74,19 @@ const Signin = () => {
         setErrMsg("Incorrect adminId or password");
         removeErr();
       } else {
-        // Store user details (excluding password) in localStorage
         localStorage.setItem(
           "activeUser",
           JSON.stringify({ ...activeAdmin[0], password: "******" })
         );
         e.target.reset();
         setVerify("Default");
-        router.push("/dashboard_admin"); // Redirect to dashboard if login is successful
+        router.push("/dashboard_admin");
       }
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     getSingleDoc(e);
   };
 
@@ -118,21 +107,29 @@ const Signin = () => {
           </p>
         </div>
       </div>
+
       <div className="righside">
+        <Link href={"/"}>
+          <Image
+            src="/logo1.svg"
+            alt="logo"
+            width={100}
+            height={100}
+            style={{ marginLeft: "170px", marginTop: "30px" }}
+          />
+        </Link>
+
         <form onSubmit={handleSubmit}>
-          <Link href={"/"} className="topsignuplink">
-            <img src="/XTB.WA.svg" alt="logo" />
-          </Link>
           <h1>Sign In with AdminId</h1>
           <div className="inputcontainer">
             <div className="inputCntn">
               <input
-                onChange={(e) => {
+                onChange={(e) =>
                   setToLocalStorage({
                     ...toLocaleStorage,
                     email: e.target.value,
-                  });
-                }}
+                  })
+                }
                 type="text"
                 name="adminId"
                 placeholder="AdminId"
@@ -142,23 +139,23 @@ const Signin = () => {
                 <i className="icofont-waiter-alt"></i>
               </span>
             </div>
+
             <div className="passcntn">
               <input
-                onChange={(e) => {
+                onChange={(e) =>
                   setToLocalStorage({
                     ...toLocaleStorage,
                     password: e.target.value,
-                  });
-                }}
-                type={`${passwordShow ? "text" : "password"}`}
+                  })
+                }
+                type={passwordShow ? "text" : "password"}
                 name="password"
-                placeholder="Admin Verifcation No."
+                placeholder="Admin Verification No."
                 required
               />
               <button
-                onClick={() => {
-                  setPasswordShow((prev) => !prev);
-                }}
+                type="button"
+                onClick={() => setPasswordShow((prev) => !prev)}
               >
                 <i
                   className={`icofont-eye-${!passwordShow ? "alt" : "blocked"}`}
@@ -188,11 +185,19 @@ const Signin = () => {
               </div>
               <div className="service_provider">
                 <p>
-                  Protected by <img src="/cloudflare.png" alt="cloudflare" />
+                  Protected by{" "}
+                  <Image
+                    src="/cloudflare.png"
+                    alt="cloudflare"
+                    width={40}
+                    height={40}
+                  />
                 </p>
               </div>
             </div>
-            {errMsg !== "" && <p className="errorMsg">{errMsg}</p>}
+
+            {errMsg && <p className="errorMsg">{errMsg}</p>}
+
             <label className="form-control2">
               <input type="checkbox" name="checkbox" required /> Remember me
             </label>

@@ -83,14 +83,13 @@ a {
 
 #absWa {
   position: fixed;
-  bottom: 80px;
-  left: 2%;
+  bottom: 40px;
+  right: 20px;
 
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #4dc247;
-  width: 50px;
   aspect-ratio: 1;
   z-index: 10000;
   border-radius: 50%;
@@ -119,4 +118,111 @@ a {
   body {
     font-size: 12px;
   }
+}
+
+/* Resize the container */
+#google_translate_element {
+  transform: scale(0.8);
+  transform-origin: top right;
+  float: right;
+}
+
+/* Hide the Google logo */
+.goog-logo-link {
+  display: none !important;
+}
+
+/* Hide the "Powered by Google" text */
+.goog-te-gadget span {
+  color: #000613 !important;
+} /* Optional: add your own styling */
+#google_translate_element select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.kyc-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #1e1e1e; /* dark background */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #f1f1f1; /* light text for dark bg */
+}
+
+.kyc-container h3 {
+  margin-bottom: 1rem;
+  font-size: 24px;
+  font-weight: 600;
+  color: #e6c63b;
+}
+
+.kyc-container p {
+  margin-bottom: 2rem;
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #ddd;
+}
+
+.form-control,
+.form--control,
+.form-select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background-color: #2a2a2a;
+  font-size: 15px;
+  color: #ffffff;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-control::placeholder,
+.form--control::placeholder {
+  color: #888;
+}
+
+.form-control:focus,
+.form--control:focus,
+.form-select:focus {
+  border-color: #2dc194;
+  background-color: #333;
+  outline: none;
+}
+
+input[type="file"].form-control {
+  background-color: transparent;
+  color: #fff;
+}
+
+.btn--base {
+  background-color: #2dc194;
+  color: #fff;
+  padding: 0.75rem;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.btn--base:hover {
+  background-color: #27b286;
 }

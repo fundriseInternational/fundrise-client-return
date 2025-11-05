@@ -2,7 +2,8 @@ import { useState, useContext, useEffect, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { themeContext } from "../../../providers/ThemeProvider";
 import Link from "next/link";
-import Script from 'next/script';
+import Script from "next/script";
+import Image from "next/image";
 
 const Navbar = ({
   showsidecard,
@@ -60,18 +61,20 @@ const Navbar = ({
   return (
     <nav>
       <div className="leftBox">
-        <Link href={"/"} className="logoCntn">
-          <img src="/xtbLogo.svg" alt="company logo" />
+        <Link href={"/"}>
+          <Image src="/logo1.svg" alt="logo" width={50} height={50} />
         </Link>
       </div>
       {shownavOptions && (
         <div id="mobilenone" className="centerBox">
-          <a href="#about">Rólunk</a>
-          <a href="#Offers">Ajánlataink</a>
-          <Link href={"/contact"}>Érintkezés</Link>
+          <a href="#about">About Us</a>
+          <a href="#Offers">Our Offers</a>
+          <Link href={"/contact"}>Contact</Link>
         </div>
       )}
       <div className="rightBox">
+        <div id="google_translate_element"></div>{" "}
+        {/* Google Translate Element */}
         {currentUser?.idnum ? (
           <div id="mobilenone" className="profileIcon">
             <i className="icofont-user-alt-3"></i>
@@ -115,14 +118,14 @@ const Navbar = ({
                       }
                       title="profile"
                     >
-                      Műszerfal <i className="icofont-dashboard-web"></i>
+                      Dashboard <i className="icofont-dashboard-web"></i>
                     </Link>
                     <button
                       type="button"
                       title="log Out"
                       onClick={handleLogOut}
                     >
-                     Jelentkezzen ki <i className="icofont-logout"></i>
+                      Log Out <i className="icofont-logout"></i>
                     </button>
                   </div>
                 </motion.div>
@@ -139,7 +142,7 @@ const Navbar = ({
                 setregisterFromPath("/");
               }}
             >
-              Nyilvántartás
+              Register
             </Link>
             <Link
               id="mobilenone"
@@ -149,11 +152,10 @@ const Navbar = ({
                 setregisterFromPath("/");
               }}
             >
-              Jelentkezzen be
+              Sign In
             </Link>
           </>
         )}
-
         <button
           id="showmobile"
           type="button"
@@ -166,7 +168,6 @@ const Navbar = ({
           <span></span>
           <span></span>
         </button>
-
         <AnimatePresence>
           {showsidecard && (
             <motion.div
@@ -194,7 +195,7 @@ const Navbar = ({
                           setregisterFromPath("/");
                         }}
                       >
-                        Nyilvántartás
+                        Register
                       </Link>{" "}
                       |{" "}
                       <Link
@@ -203,7 +204,7 @@ const Navbar = ({
                           setregisterFromPath("/");
                         }}
                       >
-                        Jelentkezzen be
+                        Sign In
                       </Link>
                     </p>
                   )}
@@ -273,12 +274,12 @@ const Navbar = ({
                   <Link
                     href={!currentUser?.admin ? "/profile" : "/dashboard_admin"}
                   >
-                    Műszerfal
+                    Dashboard
                   </Link>
                 )}
-                <Link href={"/about"}>Körülbelül</Link>
+                <Link href={"/about"}>About</Link>
                 <a href="#FAQ">FAQs</a>
-                <Link href={"/contact"}>Érintkezés</Link>
+                <Link href={"/contact"}>Contact</Link>
 
                 {currentUser?.id && (
                   <button
@@ -287,13 +288,41 @@ const Navbar = ({
                       handleLogOut();
                     }}
                   >
-                   Jelentkezzen ki <i className="icofont-logout"></i>
+                    Log Out <i className="icofont-logout"></i>
                   </button>
                 )}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
+        {/* Google Translate Initialization Script */}
+        <Script
+          id="google-translate-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          {
+            pageLanguage: 'en',
+            includedLanguages: 'en,hr',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+          },
+          'google_translate_element'
+        );
+      }
+    `,
+          }}
+        />
+        <Script
+          src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
+        <Script
+          src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
       </div>
     </nav>
   );

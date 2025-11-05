@@ -47,100 +47,99 @@ const DashboardSect = ({ setWidgetState, currentUser, setInvestData }) => {
       </div>
       <section className="Offers" id="Offers">
         <h2>Our Available Offers</h2>
-<div className="OffersCntn">
-  <div className="unitOffer">
-    <h3>EZÜST</h3>
-    <h4>
-      <span>€100</span> <br /> - <br /> <span>€900</span>
-    </h4>
-    <ul>
-      <li>
-        <i className="icofont-tick-mark"></i> <span>5X ROI</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>5X bónusz a befektetésre</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>ROI és bónusz 24 órán belül</span>
-      </li>
-    </ul>
-    <button
-      className="borderBtn"
-      onClick={() => {
-        investProcess("Ezüst", 100, 2);
-      }}
-    >
-      Kezdj el nyerni
-    </button>
-  </div>
-  <div className="unitOffer fancybg">
-    <h3>
-      GYÉMÁNT <i className="icofont-diamond"></i>
-    </h3>
-    <h4>
-      <span>€10,000</span> <br /> - <br /> <span>€100,000</span>
-    </h4>
-    <ul>
-      <li>
-        <i className="icofont-tick-mark"></i> <span>5X ROI</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>10X bónusz a befektetésre</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>ROI és bónusz 7 napon belül</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>Hozzáférés 15 digitális pénzügyi forrásunkhoz</span>
-      </li>
-    </ul>
-    <button
-      className="fancyBtn"
-      onClick={() => {
-        investProcess("Gyémánt", 10000, 7);
-      }}
-    >
-      Gazdagodjon
-    </button>
-  </div>
-  <div className="unitOffer">
-    <h3>ARANY</h3>
-    <h4>
-      <span>€1,000</span> <br /> - <br /> <span>€9,000</span>
-    </h4>
-    <ul>
-      <li>
-        <i className="icofont-tick-mark"></i> <span>5X ROI</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>8X bónusz a befektetésre</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>ROI és bónusz 4 napon belül</span>
-      </li>
-      <li>
-        <i className="icofont-tick-mark"></i>{" "}
-        <span>Hozzáférés 5 digitális pénzügyi forrásunkhoz</span>
-      </li>
-    </ul>
-    <button
-      className="borderBtn"
-      onClick={() => {
-        investProcess("Arany", 1000, 5);
-      }}
-    >
-      Kezdj el nyerni
-    </button>
-  </div>
-</div>
-
+        <div className="OffersCntn">
+          <div className="unitOffer">
+            <h3>SILVER</h3>
+            <h4>
+              <span>$100</span> <br /> - <br /> <span>$900</span>
+            </h4>
+            <ul>
+              <li>
+                <i className="icofont-tick-mark"></i> <span>5X ROI</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>5X bonus on investment</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>Get ROI and bonus in 24 hrs</span>
+              </li>
+            </ul>
+            <button
+              className="borderBtn"
+              onClick={() => {
+                investProcess("Silver", 100, 2);
+              }}
+            >
+              Invest
+            </button>
+          </div>
+          <div className="unitOffer fancybg">
+            <h3>
+              DIAMOND <i className="icofont-diamond"></i>
+            </h3>
+            <h4>
+              <span>$10,000</span> <br /> - <br /> <span>$100,000</span>
+            </h4>
+            <ul>
+              <li>
+                <i className="icofont-tick-mark"></i> <span>5X ROI</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>10X Bonus on investment</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>Get ROI and bonus in 7 Days</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>Access to 15 of our digital financial resources</span>
+              </li>
+            </ul>
+            <button
+              className="fancyBtn"
+              onClick={() => {
+                investProcess("Diamond", 10000, 7);
+              }}
+            >
+              Get Rich
+            </button>
+          </div>
+          <div className="unitOffer">
+            <h3>GOLD</h3>
+            <h4>
+              <span>$1,000</span> <br /> - <br /> <span>$9,000</span>
+            </h4>
+            <ul>
+              <li>
+                <i className="icofont-tick-mark"></i> <span>5X ROI</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>8X Bonus on investment</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>Get ROI and bonus in 4 Days</span>
+              </li>
+              <li>
+                <i className="icofont-tick-mark"></i>{" "}
+                <span>Access to 5 of our digital financial resources</span>
+              </li>
+            </ul>
+            <button
+              className="borderBtn"
+              onClick={() => {
+                investProcess("Gold", 1000, 5);
+              }}
+            >
+              Invest
+            </button>
+          </div>
+        </div>
       </section>
     </>
   );

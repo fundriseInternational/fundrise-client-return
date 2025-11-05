@@ -24,7 +24,9 @@ import WithdrawalSect from "../components/dashboard/WithdrawalSect";
 import WithdrawalPayment from "../components/dashboard/WithdrawPayment";
 import NotificationSect from "../components/dashboard/NotificationSect";
 import Head from "next/head";
-
+import Image from "next/image";
+import Script from "next/script";
+import KycSect from "../components/dashboard/kycSect";
 const Profile = () => {
   const [passwordShow, setPasswordShow] = useState(true);
   const [profilestate, setProfileState] = useState("Dashboard");
@@ -47,7 +49,7 @@ const Profile = () => {
     currentYear + "-" + (currentMonth + 1) + "-" + currentDayOfMonth;
   const [currentUser, setCurrentUser] = useState({
     name: "",
-    avatar: "avatar_1",
+    avatar: "",
     email: "",
     password: "",
     balance: 50,
@@ -57,8 +59,8 @@ const Profile = () => {
     referralCount: 0,
     admin: false,
     idnum: 101010,
-    userName: "",
-    authStatus: "",
+    userName: " ",
+    authStatus: "unseen",
   });
 
   const [investData, setInvestData] = useState({
@@ -178,17 +180,13 @@ const Profile = () => {
     sessionStorage.removeItem("activeUser");
   };
 
-  //user dashboard values
-  const totalCapital = investments
-    .filter((elem) => elem?.status !== "Pending")
-    .reduce((sum, currentObject) => {
-      // Ensure that currentObject.capital is a number before adding it to the sum
-      const capitalValue =
-        typeof currentObject.capital === "number" ? currentObject.capital : 0;
-
-      // Add the capital value to the sum
-      return sum + capitalValue;
-    }, 0);
+  const totalCapital =
+    investments
+      .filter((elem) => elem?.status !== "Pending")
+      .reduce((sum, currentObject) => {
+        const capitalValue = Number(currentObject.capital) || 0;
+        return sum + capitalValue;
+      }, 0) + (currentUser?.balance || 0); // ✅ add the correct balance from Firestore
 
   const totalROI = investments
     .filter((elem) => elem?.status !== "Pending")
@@ -250,84 +248,100 @@ const Profile = () => {
 
   return (
     <div className="mainprofileSect">
-<Head>
-  <title>Felhasználói irányítópult</title>
-  <meta property="og:title" content="Felhasználói irányítópult" />
-</Head>
-
-<div id="mobilenone" className="leftProfile">
-  <div className="topmostRightPrile">
-    <Link href={"/"}>
-      <img src="/xtbLogo.svg" className="theLogo" alt="logo" />
-    </Link>
-    <div className="panelPrfileDisp">
+      <Head>
+        <title>User Dashboard</title>
+        <meta property="og:title" content="User Dashboard" />
+      </Head>
       <div
-        className="left"
-        style={{ backgroundImage: `url(/${currentUser?.avatar}.png)` }}
+        id="google_translate_element"
+        style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
       ></div>
-      <div className="right">
-        <h3>{currentUser?.name}</h3>
-        <p>{currentUser?.email}</p>
+      <div id="mobilenone" className="leftProfile">
+        <div className="topmostRightPrile">
+          <Link href={"/"}>
+            <Image
+              src="/logo1.svg"
+              alt="logo"
+              width={100}
+              height={100}
+              style={{ marginLeft: "50px", marginTop: "30px" }}
+            />
+          </Link>
+          <div className="panelPrfileDisp">
+            <div
+              className="left"
+              style={{ backgroundImage: `url(/${currentUser?.avatar}.png)` }}
+            ></div>
+            <div className="right">
+              <h3>{currentUser?.name}</h3>
+              <p>{currentUser?.email}</p>
+            </div>
+          </div>
+        </div>
+        <div className="centerRightProfile">
+          <ul>
+            <li
+              className={profilestate === "Dashboard" ? "active" : ""}
+              onClick={() => {
+                setProfileState("Dashboard");
+              }}
+            >
+              <i className="icofont-dashboard-web"></i> Dashboard
+            </li>
+            <li
+              className={profilestate === "kyc" ? "active" : ""}
+              onClick={() => {
+                setProfileState("kyc");
+              }}
+            >
+              <i className="icofont-id-card"></i> Kyc
+            </li>
+            <li
+              className={profilestate === "Profile" ? "active" : ""}
+              onClick={() => {
+                setProfileState("Profile");
+              }}
+            >
+              <i className="icofont-ui-user"></i> Profile
+            </li>
+            <li
+              className={profilestate === "Investments" ? "active" : ""}
+              onClick={() => {
+                setProfileState("Investments");
+              }}
+            >
+              <i className="icofont-money-bag"></i> Investments
+            </li>
+            <li
+              className={profilestate === "Withdrawals" ? "active" : ""}
+              onClick={() => {
+                setProfileState("Withdrawals");
+              }}
+            >
+              <i className="icofont-pay"></i> Withdrawals
+            </li>
+            <li
+              className={profilestate === "Notifications" ? "active" : ""}
+              onClick={() => {
+                setProfileState("Notifications");
+              }}
+            >
+              <i className="icofont-alarm"></i> Notifications{" "}
+              <span>
+                {notifications.filter((elem) => elem?.status !== "seen").length}
+              </span>
+            </li>
+            <Link href={"/contact"}>
+              <i className="icofont-ui-text-loading"></i> Feedback
+            </Link>
+          </ul>
+        </div>
+        <div className="rightLeftProfile">
+          <button className="borderBtn" onClick={handleLogOut}>
+            Log Out <i className="icofont-logout"></i>{" "}
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-  <div className="centerRightProfile">
-    <ul>
-      <li
-        className={profilestate === "Műszerfal" ? "active" : ""}
-        onClick={() => {
-          setProfileState("Műszerfal");
-        }}
-      >
-        <i className="icofont-dashboard-web"></i> Irányítópult
-      </li>
-      <li
-        className={profilestate === "Profile" ? "active" : ""}
-        onClick={() => {
-          setProfileState("Profile");
-        }}
-      >
-        <i className="icofont-ui-user"></i> Profil
-      </li>
-      <li
-        className={profilestate === "Investments" ? "active" : ""}
-        onClick={() => {
-          setProfileState("Investments");
-        }}
-      >
-        <i className="icofont-money-bag"></i> Befektetések
-      </li>
-      <li
-        className={profilestate === "Withdrawals" ? "active" : ""}
-        onClick={() => {
-          setProfileState("Withdrawals");
-        }}
-      >
-        <i className="icofont-pay"></i> Kivonások
-      </li>
-      <li
-        className={profilestate === "Notifications" ? "active" : ""}
-        onClick={() => {
-          setProfileState("Notifications");
-        }}
-      >
-        <i className="icofont-alarm"></i> Értesítések{" "}
-        <span>
-          {notifications.filter((elem) => elem?.status !== "seen").length}
-        </span>
-      </li>
-      <Link href={"/contact"}>
-        <i className="icofont-ui-text-loading"></i> Visszajelzés
-      </Link>
-    </ul>
-  </div>
-  <div className="rightLeftProfile">
-    <button className="borderBtn" onClick={handleLogOut}>
-      Kijelentkezés <i className="icofont-logout"></i>{" "}
-    </button>
-  </div>
-</div>
-
       <div className="rightProfile">
         <h1>
           {profilestate}{" "}
@@ -343,7 +357,7 @@ const Profile = () => {
         <div className="topmostRightProfile">
           <div className="unitUserEarningDisplay fancybg">
             <h3>
-            Összes bevétel{" "}
+              Total Earnings{" "}
               <span
                 onClick={() => {
                   setPasswordShow((prev) => !prev);
@@ -355,32 +369,32 @@ const Profile = () => {
               </span>
             </h3>
             <h2>
-              €
+              $
               {passwordShow
                 ? `${(
-                    currentUser?.bonus +
-                    totalROI +
-                    totalCapital +
-                    totalBonus
+                    (currentUser?.bonus || 0) +
+                    (totalROI || 0) +
+                    (totalCapital || 0) +
+                    (totalBonus || 0)
                   ).toLocaleString()}`
                 : "******"}
             </h2>
           </div>
           <div className="unitUserEarningDisplay fancybg">
-            <h3>Bónuszok</h3>
+            <h3>Bonuses</h3>
             <h2>
-              €
+              $
               {passwordShow
                 ? `${(currentUser?.bonus + totalBonus).toLocaleString()}`
                 : "******"}
             </h2>
           </div>
           <div className="unitUserEarningDisplay fancybg">
-            <h3>Visszatér</h3>
-            <h2>€{passwordShow ? `${totalROI.toLocaleString()}` : "******"}</h2>
+            <h3>Returns</h3>
+            <h2>${passwordShow ? `${totalROI.toLocaleString()}` : "******"}</h2>
           </div>
           <div className="unitUserEarningDisplay fancybg">
-            <h3>Aktív / Függőben lévő tervek</h3>
+            <h3>Active / Pending Plans</h3>
             <h2>{investments.length}</h2>
           </div>
         </div>
@@ -389,6 +403,15 @@ const Profile = () => {
             setWidgetState={setWidgetState}
             currentUser={currentUser}
             setInvestData={setInvestData}
+          />
+        )}
+        {profilestate === "kyc" && (
+          <KycSect
+            currentUser={currentUser}
+            setWidgetState={setWidgetState}
+            totalBonus={totalBonus}
+            totalCapital={totalCapital}
+            totalROI={totalROI}
           />
         )}
         {profilestate === "Profile" && (
@@ -457,13 +480,18 @@ const Profile = () => {
           </p>
           <p>|</p>
           <p>
-            <i class="icofont-shield-alt"></i> által védett{" "}
+            <i class="icofont-shield-alt"></i> Protected by{" "}
             <a
               href="https://www.cloudflare.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/cloudflare.png" alt="cloudflare" />
+              <Image
+                src="/cloudflare.png"
+                alt="cloudflare"
+                width={40}
+                height={20}
+              />
             </a>
           </p>
         </footer>
@@ -509,7 +537,13 @@ const Profile = () => {
           >
             <div className="topmostRightPrile">
               <Link href={"/"}>
-                <img src="/xtbLogo.svg" className="theLogo" alt="logo" />
+                <Image
+                  src="/logo1.svg"
+                  alt="logo"
+                  width={60}
+                  height={60}
+                  style={{ marginLeft: "50px", marginTop: "30px" }}
+                />
               </Link>
               <div className="panelPrfileDisp">
                 <div
@@ -532,7 +566,15 @@ const Profile = () => {
                     setProfileState("Dashboard");
                   }}
                 >
-                  <i className="icofont-dashboard-web"></i> Műszerfal
+                  <i className="icofont-dashboard-web"></i> Dashboard
+                </li>
+                <li
+                  className={profilestate === "kyc" ? "active" : ""}
+                  onClick={() => {
+                    setProfileState("kyc");
+                  }}
+                >
+                  <i className="icofont-id-card"></i> Kyc
                 </li>
                 <li
                   className={profilestate === "Profile" ? "active" : ""}
@@ -540,7 +582,7 @@ const Profile = () => {
                     setProfileState("Profile");
                   }}
                 >
-                  <i className="icofont-ui-user"></i> Profil
+                  <i className="icofont-ui-user"></i> Profile
                 </li>
                 <li
                   className={profilestate === "Investments" ? "active" : ""}
@@ -548,7 +590,7 @@ const Profile = () => {
                     setProfileState("Investments");
                   }}
                 >
-                  <i className="icofont-money-bag"></i> Beruházások
+                  <i className="icofont-money-bag"></i> Investments
                 </li>
                 <li
                   className={profilestate === "Withdrawals" ? "active" : ""}
@@ -556,7 +598,7 @@ const Profile = () => {
                     setProfileState("Withdrawals");
                   }}
                 >
-                  <i className="icofont-pay"></i> Kivonások
+                  <i className="icofont-pay"></i> Withdrawals
                 </li>
                 <li
                   className={profilestate === "Notifications" ? "active" : ""}
@@ -564,7 +606,7 @@ const Profile = () => {
                     setProfileState("Notifications");
                   }}
                 >
-                  <i className="icofont-alarm"></i> Értesítések{" "}
+                  <i className="icofont-alarm"></i> Notifications{" "}
                   <span>
                     {
                       notifications.filter((elem) => elem?.status !== "seen")
@@ -573,13 +615,13 @@ const Profile = () => {
                   </span>
                 </li>
                 <Link href={"/contact"}>
-                  <i className="icofont-ui-text-loading"></i>Visszacsatolás
+                  <i className="icofont-ui-text-loading"></i> Feedback
                 </Link>
               </ul>
             </div>
             <div className="rightLeftProfile">
               <button className="borderBtn" onClick={handleLogOut}>
-              Jelentkezzen ki <i className="icofont-logout"></i>{" "}
+                Log Out <i className="icofont-logout"></i>{" "}
               </button>
             </div>
 
@@ -595,6 +637,30 @@ const Profile = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <Script
+        id="google-translate-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+              {
+                pageLanguage: 'en',
+                includedLanguages: 'en,hr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+              },
+              'google_translate_element'
+            );
+          }
+        `,
+        }}
+      />
+      <Script
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+        strategy="afterInteractive"
+      />
     </div>
   );
 };

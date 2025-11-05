@@ -5,6 +5,7 @@ import Footer from "../components/home/Footer";
 import Navbar from "../components/home/Navbar";
 import Link from "next/link";
 import IframeSect from "../components/home/IframeSect";
+import Image from "next/image";
 
 export default function Home() {
   useEffect(() => {
@@ -78,300 +79,329 @@ export default function Home() {
         showDisplayCard={showDisplayCard}
       />
       <main>
-      <section className="homeIntro">
-  <h1>Ahol a pénzed dolgozik</h1>
-  <p>Egyszeri juttatás mindenki számára, aki jogosult szubjektív alapon az egyszeri jövedelemre személyenként, amelyet a Fundrise finanszírozási kapacitás terhére biztosítanak</p>
+        <section className="homeIntro">
+          <h1
+            style={{ color: "#e6c63b", fontSize: "26px", fontWeight: "bold" }}
+          >
+            XTB
+          </h1>
 
-  <div className="cta">
-    <a href="#Offers" className="fancyBtn">
-    Kezdj el nyerni
-    </a>
-  </div>
-</section>
-
-<div className="keyfactsCntn">
-  <div className="keyfacts fancybg">
-    <div className="unitfact">
-      <h2>1M+</h2>
-      <p>Aktív felhasználók</p>
-    </div>
-    <div className="unitfact">
-      <h2>€490.9M+</h2>
-      <p>Összes kifizetés</p>
-    </div>
-    <div className="unitfact">
-      <h2>€180M+</h2>
-      <p>Összes betétek</p>
-    </div>
-    <div className="unitfact">
-      <h2>€700M</h2>
-      <p>Piaci kapitalizáció</p>
-    </div>
-  </div>
-</div>
-
-<section id="about" className="about">
-  <div className="whatareweabout">
-    <div className="aboutimg"></div>
-    <div className="abouttext">
-      <h2>Fundrise HU</h2>
-      <p>
-        A Fundrise egy teljesen engedélyezett és szabályozott kereskedési és
-        befektetési vállalat. Az egyik legnagyobb tőzsdén jegyzett FX és CFD
-        brókerek vagyunk a világon, amely kiskereskedelmi kereskedőknek kínál
-        hozzáférést több száz globális piachoz, beleértve a{" "}
-        <span>kriptovalutát</span>, <span>bináris opciókat</span>,{" "}
-        <span>részvényeket</span>, <span>kötvényeket</span>,{" "}
-        <span>határidős ügyleteket</span>, <span>devizákat</span>,{" "}
-        <span>aranyat</span>, <span>ezüstöt</span> és <span>olajkereskedést</span>.
-      </p>
-      <p>
-        Úgy gondoljuk, hogy a kiváló befektetési teljesítmény a tudás, a
-        tapasztalat és az alkalmazkodóképesség ügyes egyensúlyán alapul. Nagyra
-        értékeljük ügyfeleink hűségét, és fontosnak tartjuk az egyes ügyfelekkel
-        kialakított kapcsolatokat.
-      </p>
-      <Link className="borderBtn" href={"/about"}>
-        Többet a cégünkről...
-      </Link>
-    </div>
-  </div>
-  <coingecko-coin-price-marquee-widget
-    coin-ids="bitcoin,ethereum,eos,ripple,litecoin,tron,dogecoin,stellar,algorand,flow,dai,usdd,maker,astar,tezos,solana,neo,gala,cardano,aptos,helium,kava"
-    currency="usd"
-    background-color="#000613"
-    locale="hu"
-  ></coingecko-coin-price-marquee-widget>
-
-  <div className="banks" style={{ display: "flex", gap: "10px" }}>
-    <a>
-      <img src="/bnk5.jpeg" alt="twitter" style={{ height: "50px", width: "50px" }} />
-    </a>
-    <a>
-      <img src="/bnk4.jpeg" alt="viber" style={{ height: "50px", width: "50px" }} />
-    </a>
-    <a>
-      <img src="/bnk3.jpeg" alt="telegram" style={{ height: "50px", width: "50px" }} />
-    </a>
-    <a>
-      <img src="/bnk2.jpeg" alt="twitter" style={{ height: "50px", width: "50px" }} />
-    </a>
-    <a>
-      <img src="/bnk1.jpeg" alt="twitter" style={{ height: "50px", width: "50px" }} />
-    </a>
-    <a>
-      <img src="/bnk7.jpeg" alt="twitter" style={{ height: "50px", width: "50px" }} />
-    </a>
-    <a>
-      <img src="/bnk6.svg" alt="twitter" style={{ height: "50px", width: "50px" }} />
-    </a>
-  </div>
-
-  <div className="companyscopes">
-    <div className="unitscope advantage">
-      <h3>ELŐNYEINK</h3>
-      <p>
-        Befektetési lehetőségeink rendkívül tisztességesek, és minden
-        tranzakciós adatot blokkláncon tárolunk, amely lehetővé teszi
-        ultra-biztonságos pénzügyi adatok létrehozását, átvitelét és
-        ellenőrzését harmadik felek beavatkozása nélkül.
-      </p>
-    </div>
-    <span className="vertSept" role="separator"></span>
-    <div className="unitscope advantage">
-      <h3>GARANCIÁINK</h3>
-      <p>
-        Azért vagyunk itt, mert szenvedélyesen hiszünk a nyitott, átlátható
-        piacokban, és célunk, hogy jelentős hajtóerővé váljunk az elterjedésük
-        érdekében. Garantáljuk a maximális nyereséget platformunk használatával,
-        és természetesen gondoskodunk adatai biztonságáról.
-      </p>
-    </div>
-    <span className="vertSept" role="separator"></span>
-    <div className="unitscope advantage">
-      <h3>KÜLDETÉSÜNK</h3>
-      <p>
-        Platformunk küldetése, hogy segítsen Önnek a helyes útra térni, és
-        minden lehetőségből profitot szerezni, még akkor is, ha csak most
-        kezdi befektetési útját.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section className="features">
-  <h2>Soha nem tévedhet a Fundrise-szel</h2>
-  <div className="thefeatureGrid">
-    <div className="topSubgrid">
-      <div className="lefttopSubgrid">
-        <div className="gridunit floater">
-          <h3>ERŐS BIZTONSÁG</h3>
-          <p>Védelem DDoS támadások ellen, teljes adat titkosítás.</p>
+          <p>Trade with us and get a high margin return on your investment</p>
+          <ul>
+            <li>
+              <i className="icofont-cop-badge"></i> Trading with us guarantees{" "}
+              <span>high profit margin</span>
+            </li>
+            <li>
+              <i className="icofont-cop-badge"></i> Leader in{" "}
+              <span>regulatory compliance</span> and{" "}
+              <span>security certifications</span>
+            </li>
+            <li>
+              <i className="icofont-cop-badge"></i> Trusted by over{" "}
+              <span> over 1 million users</span> worldwide
+            </li>
+            <li>
+              <i className="icofont-cop-badge"></i> Get <span>$50 bonus</span>{" "}
+              when you register with us
+            </li>
+            <li>
+              <i className="icofont-cop-badge"></i> Invest in{" "}
+              <span>your way</span>{" "}
+            </li>
+          </ul>
+          <div className="cta">
+            <a href="#Offers" className="fancyBtn">
+              Invest Now
+            </a>
+          </div>
+        </section>
+        <div className="keyfactsCntn">
+          <div className="keyfacts fancybg">
+            <div className="unitfact">
+              <h2>1M+</h2>
+              <p>Active Users</p>
+            </div>
+            <div className="unitfact">
+              <h2>$490.9M+</h2>
+              <p>Total Withdrawals</p>
+            </div>
+            <div className="unitfact">
+              <h2>$180M+</h2>
+              <p>Total Investment</p>
+            </div>
+            <div className="unitfact">
+              <h2>$700M</h2>
+              <p>Market Cap</p>
+            </div>
+          </div>
         </div>
-        <div className="gridunit floater">
-          <h3>FIZETÉSI LEHETŐSÉGEK</h3>
-          <p>
-            Fő fizetési lehetőségünk a kriptovaluta, amely minden felhasználó
-            számára elérhető világszerte.
-          </p>
-        </div>
-      </div>
-      <div className="righttopsubgrid floater">
-        <h3>MOBIL ELÉRHETŐSÉG</h3>
-        <p>
-          Kényelmesen elérheti befektetéseit mobiltelefonján bármikor, bárhol,
-          bármely napon.
-        </p>
-      </div>
-    </div>
-    <div className="bottomSubgrid">
-      <div className="leftbottomSubgrid floater">
-        <h3>KÖLTSÉGHATÉKONYSÁG</h3>
-        <p>
-          Ésszerű rendszer díjak minden platform felhasználó számára az összes
-          piaci opcióban.
-        </p>
-      </div>
-      <div className="rightBottomSubgrid floater">
-        <h3>MAGAS LIKVIDITÁS</h3>
-        <p>
-          Platformunk magas likviditást kínál a felhasználóink számára elérhető
-          összes befektetési lehetőséghez.
-        </p>
-      </div>
-    </div>
-    <div className="cta2 fancybg">
-      <div className="leftCta2">
-        <h2>
-          Csatlakozzon <span>1M+ aktív felhasználónkhoz</span>
-        </h2>
-        <p>Vágjon bele még ma</p>
-      </div>
-      <a href="#Offers" className="fancyBtn">
-        Csatlakozzon most
-      </a>
-    </div>
-  </div>
-</section>
+        <section id="about" className="about">
+          <div className="whatareweabout">
+            <div className="aboutimg"></div>
+            <div className="abouttext">
+              <h1
+                style={{
+                  color: "#e6c63b",
+                  fontSize: "26px",
+                  fontWeight: "bold",
+                }}
+              >
+                XTB
+              </h1>
+              <p>
+                XTB is a fully licensed and regulated trading and investment
+                firm. We are one of the largest stock exchange-listed FX & CFD
+                brokers in the world, providing retail traders access to
+                hundreds of global markets, including
+                <span>cryptocurrency</span>, <span>binary</span>,{" "}
+                <span>the stock</span>, <span>bond</span>, <span>futures</span>,{" "}
+                <span>currencies</span>, <span>gold</span>, <span>silver</span>,
+                and <span>oil trading</span>.
+              </p>
+              <p>
+                We believe superior investment performance is achieved through a
+                skillful balance of knowledge, experience, and adaptability. We
+                appreciate our clients loyalty and value the relationships we
+                build with each customer.
+              </p>
+              <Link
+                style={{ color: "#e6c63b" }}
+                className="borderBtn"
+                href={"/about"}
+              >
+                More About Our Company...
+              </Link>
+            </div>
+          </div>
+          <coingecko-coin-price-marquee-widget
+            coin-ids="bitcoin,ethereum,eos,ripple,litecoin,tron,dogecoin,stellar,algorand,flow,dai,usdd,maker,astar,tezos,solana,neo,gala,cardano,aptos,helium,kava"
+            currency="usd"
+            background-color="#000613"
+            locale="en"
+          ></coingecko-coin-price-marquee-widget>
 
+          <div className="companyscopes">
+            <div className="unitscope advantage">
+              <h3>OUR ADVANTAGES</h3>
+              <p>
+                Our Investment Options are very fair and all transactional data
+                is stored on Block chain, which allows to create, transfer and
+                verify ultra-secure financial data without interference of third
+                parties.
+              </p>
+            </div>
+            <span className="vertSept" role="separator"></span>
+            <div className="unitscope advantage">
+              <h3>OUR GUARANTEES</h3>
+              <p>
+                We are here because we are passionate about open, transparent
+                markets and aim to be a major driving force in widespread
+                adoption, we assure you of maximum profit using our platform and
+                of cause we will safeguard your data.
+              </p>
+            </div>
+            <span className="vertSept" role="separator"></span>
+            <div className="unitscope advantage">
+              <h3>OUR MISSION</h3>
+              <p>
+                Our mission as a platform is to to help get you on the right
+                track and earn out of every option even as you start your
+                investing journey.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="features">
+          <h2>You Can Never Go Wrong With XTB</h2>
+          <div className="thefeatureGrid">
+            <div className="topSubgrid">
+              <div className="lefttopSubgrid">
+                <div className="gridunit floater">
+                  <h3>STRONG SECURITY</h3>
+                  <p>Protection against DDoS attacks, full data encryption.</p>
+                </div>
+                <div className="gridunit floater">
+                  <h3>PAYMENT OPTIONS</h3>
+                  <p>
+                    Our Major payment option is Crypto currency which is
+                    accessible to all users world wide.
+                  </p>
+                </div>
+              </div>
+              <div className="righttopsubgrid floater">
+                <h3>MOBILE ACCESS</h3>
+                <p>
+                  Access Your Investment conveniently on your mobile phone any
+                  time, anywhere, any day.
+                </p>
+              </div>
+            </div>
+            <div className="bottomSubgrid">
+              <div className="leftbottomSubgrid floater">
+                <h3>COST EFFECTIVE</h3>
+                <p>
+                  Reasonable system fees for all platform users across all
+                  market options.
+                </p>
+              </div>
+              <div className="rightBottomSubgrid floater">
+                <h3>HIGH LIQUIDITY</h3>
+                <p>
+                  Our Platform Offers high liquidity for all investment options
+                  available to our users.
+                </p>
+              </div>
+            </div>
+            <div className="cta2 fancybg">
+              <div className="leftCta2">
+                <h2>
+                  Join our <span>1M+ active users</span>
+                </h2>
+                <p>Get Started Today</p>
+              </div>
+              <a
+                href="#Offers"
+                className="fancyBtn"
+                style={{ color: "#e6c63b" }}
+              >
+                Join now
+              </a>
+            </div>
+          </div>
+        </section>
         <coingecko-coin-price-marquee-widget
           coin-ids="bitcoin,ethereum,eos,ripple,litecoin,tron,dogecoin,stellar,algorand,flow,dai,usdd,maker,astar,tezos,solana,neo,gala,cardano,aptos,helium,kava,fantom"
           currency="usd"
           background-color="#000613"
           locale="en"
         ></coingecko-coin-price-marquee-widget>
-<section className="pathToInvest">
-  <h2>Pénzügyi utazása itt kezdődik.</h2>
-  <div className="pathCntn">
-    <div className="unitPathSect">
-      <span>1.</span>
-      <img src="/download_coin.png" alt="Regisztráció" />
-      <h2>Regisztráció</h2>
-      <p>Töltse ki az adatait, és erősítse meg e-mail címét.</p>
-    </div>
-    <div className="unitPathSect">
-      <span>2.</span>
-      <img src="/add_coins.png" alt="Ajánlat vásárlása" />
-      <h2>Bármelyik ajánlatunk megvásárlása</h2>
-      <p>
-        Töltse fel pénztárcáját, és vásároljon bármelyik tervet, amelyet választ,
-        és nézze meg, hogyan kereskedik rendszerünk az Ön nevében.
-      </p>
-    </div>
-    <div className="unitPathSect">
-      <span>3.</span>
-      <img src="/buy_sell.png" alt="Kezdje el keresni" />
-      <h2>Kezdje el keresni</h2>
-      <p>
-        Azonnal figyelheti befektetése növekedését. Kifizetések 60 percenként.
-      </p>
-    </div>
-  </div>
-</section>
-
-{!currentUser?.admin && (
-  <section id="Offers" className="Offers">
-    <h2>Üdvözöljük a CREDIT FORUMON! Pénzügyi szolgáltatásokkal kapcsolatos útja itt kezdődik</h2>
-    <div className="OffersCntn">
-      <div className="unitOffer">
-        <h3>EZÜST</h3>
-        <h4>
-          <span>€100</span> <br /> - <br /> <span>€900</span>
-        </h4>
-        <ul>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>5X ROI / Profit</span>
-          </li>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>ROI / Profit 24 órán belül</span>
-          </li>
-        </ul>
-        <Link
-          href={currentUser?.id ? "/profile#Offers" : "/signup"}
-          className="borderBtn"
-        >
-          Kezdj el nyerni
-        </Link>
-      </div>
-      <div className="unitOffer fancybg">
-        <h3>
-          DIAMOND <i className="icofont-diamond"></i>
-        </h3>
-        <h4>
-          <span>€10,000</span> <br /> - <br /> <span>€100,000</span>
-        </h4>
-        <ul>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>10X ROI / Profit</span>
-          </li>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>ROI / Profit 7 nap alatt</span>
-          </li>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>Hozzáférés 15 digitális pénzügyi erőforrásunkhoz</span>
-          </li>
-        </ul>
-        <Link
-          href={currentUser?.id ? "/profile#Offers" : "/signup"}
-          className="fancyBtn"
-        >
-          Gazdagodjon meg
-        </Link>
-      </div>
-      <div className="unitOffer">
-        <h3>ARANY</h3>
-        <h4>
-          <span>€1,000</span> <br /> - <br /> <span>€9,000</span>
-        </h4>
-        <ul>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>7X ROI / Profit</span>
-          </li>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>ROI / Profit 4 nap alatt</span>
-          </li>
-          <li>
-            <i className="icofont-tick-mark"></i>{" "}
-            <span>Hozzáférés 5 digitális pénzügyi erőforrásunkhoz</span>
-          </li>
-        </ul>
-        <Link
-          href={currentUser?.id ? "/profile#Offers" : "/signup"}
-          className="borderBtn"
-        >
-          Kezdj el nyerni        </Link>
-      </div>
-    </div>
-  </section>
-)}
-
+        <section className="pathToInvest">
+          <h2>Your Investment Journey Starts Here</h2>
+          <div className="pathCntn">
+            <div className="unitPathSect">
+              <span>1.</span>
+              <Image
+                src="/download_coin.png"
+                alt="Register"
+                width={40}
+                height={40}
+              />
+              <h2>Register</h2>
+              <p>Complete Our Details and Verify Your Email Address.</p>
+            </div>
+            <div className="unitPathSect">
+              <span>2.</span>
+              <Image
+                src="/add_coins.png"
+                alt="Register"
+                width={40}
+                height={40}
+              />
+              <h2>Buy any of our Offers</h2>
+              <p>
+                Fund your wallet and buy into any plan of your choice and watch
+                our system trade for you.
+              </p>
+            </div>
+            <div className="unitPathSect">
+              <span>3.</span>
+              <Image
+                src="/buy_sell.png"
+                alt="Register"
+                width={40}
+                height={40}
+              />
+              <h2>Start Earning</h2>
+              <p>
+                Instantly watch your investment grow. Pay Outs Every 60 Minutes.
+              </p>
+            </div>
+          </div>
+        </section>
+        {!currentUser?.admin && (
+          <section id="Offers" className="Offers">
+            <h2>Kickstart Your Journey To Financial Freedom</h2>
+            <div className="OffersCntn">
+              <div className="unitOffer">
+                <h3 style={{ color: "#C0C0C0" }}>SILVER</h3>
+                <h4>
+                  <span>$50</span> <br /> - <br /> <span>$900</span>
+                </h4>
+                <ul>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>5X ROI / Profit</span>
+                  </li>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>Get ROI / Profit in 24 hrs</span>
+                  </li>
+                </ul>
+                <Link
+                  href={currentUser?.id ? "/profile#Offers" : "/signup"}
+                  className="borderBtn"
+                >
+                  Invest
+                </Link>
+              </div>
+              <div className="unitOffer fancybg">
+                <h3 style={{ color: "#B9F2FF" }}>
+                  DIAMOND <i className="icofont-diamond"></i>
+                </h3>
+                <h4>
+                  <span>$10,000</span> <br /> - <br /> <span>$100,000</span>
+                </h4>
+                <ul>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>10X ROI / Profit</span>
+                  </li>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>Get ROI / Profit in 7 Days</span>
+                  </li>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>Access to 15 of our digital financial resources</span>
+                  </li>
+                </ul>
+                <Link
+                  href={currentUser?.id ? "/profile#Offers" : "/signup"}
+                  className="fancyBtn"
+                >
+                  Invest
+                </Link>
+              </div>
+              <div className="unitOffer">
+                <h3 style={{ color: "#FFD700" }}>GOLD</h3>
+                <h4>
+                  <span>$1,000</span> <br /> - <br /> <span>$9,000</span>
+                </h4>
+                <ul>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>7X ROI / Profit</span>
+                  </li>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>Get ROI / Profit in 4 Days</span>
+                  </li>
+                  <li>
+                    <i className="icofont-tick-mark"></i>{" "}
+                    <span>Access to 5 of our digital financial resources</span>
+                  </li>
+                </ul>
+                <Link
+                  href={currentUser?.id ? "/profile#Offers" : "/signup"}
+                  className="borderBtn"
+                >
+                  Invest
+                </Link>
+              </div>
+            </div>
+          </section>
+        )}
         <IframeSect />
         <FAQ />
         <Footer />

@@ -22,6 +22,9 @@ import UnitUserSect from "../components/dashAdmin/UnitUserSect";
 import WithdrawAdmin from "../components/dashAdmin/WithdrawAdmin";
 import UnitWithdrawSect from "../components/dashAdmin/UnitWithdrawSect";
 import Head from "next/head";
+import Image from "next/image";
+import Script from "next/script";
+import KycAdmin from "../components/dashAdmin/KycAdmin";
 
 const Dashboard_admin = () => {
   const [passwordShow, setPasswordShow] = useState(true);
@@ -47,7 +50,7 @@ const Dashboard_admin = () => {
     currentYear + "-" + (currentMonth + 1) + "-" + currentDayOfMonth;
   const [currentUser, setCurrentUser] = useState({
     name: "",
-    avatar: "avatar_1",
+    avatar: "",
     email: "",
     password: "",
     balance: 50,
@@ -62,7 +65,7 @@ const Dashboard_admin = () => {
 
   const [userData, setUserData] = useState({
     name: "",
-    avatar: "avatar_1",
+    avatar: "",
     email: "",
     password: "",
     balance: 50,
@@ -201,19 +204,13 @@ const Dashboard_admin = () => {
     localStorage.removeItem("activeUser");
   };
 
-  //user dashboard values
-  const totalCapital = investments
-    .filter((elem) => elem?.idnum !== "101010")
-    .reduce((sum, currentObject) => {
-      // Ensure that currentObject.capital is a number before adding it to the sum
-      const capitalValue =
-        typeof currentObject.capital === "number"
-          ? currentObject.capital
-          : parseInt(currentObject.capital);
-
-      // Add the capital value to the sum
-      return sum + capitalValue;
-    }, 0);
+  const totalCapital =
+    investments
+      .filter((elem) => elem?.idnum !== "101010")
+      .reduce((sum, currentObject) => {
+        const capitalValue = Number(currentObject.capital) || 0;
+        return sum + capitalValue;
+      }, 0) + (currentUser?.balance || 0); // ✅ use the correct balance
 
   const totalROI = investments
     .filter((elem) => elem?.idnum !== "101010")
@@ -279,11 +276,27 @@ const Dashboard_admin = () => {
         <title>Admin Dashboard</title>
         <meta property="og:title" content="Admin Dashboard" />
       </Head>
+      <div
+        id="google_translate_element"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "20px",
+          marginBottom: "40px",
+        }}
+      ></div>
+
       <div id="mobilenone" className="leftProfile">
+        <Link href={"/"}>
+          <Image
+            src="/logo1.svg"
+            alt="logo"
+            width={100}
+            height={100}
+            style={{ marginLeft: "170px", marginTop: "30px" }}
+          />
+        </Link>
         <div className="topmostRightPrile">
-          <Link href={"/"}>
-            <img src="/xtbLogo.svg" className="theLogo" alt="logo" />
-          </Link>
           <div className="panelPrfileDisp">
             <div
               className="left"
@@ -331,6 +344,13 @@ const Dashboard_admin = () => {
                 </span>
               )}
             </li>
+            <li
+              className={profilestate === "KYC" ? "active" : ""}
+              onClick={() => setProfileState("KYC")}
+            >
+              <i className="icofont-id-card"></i> KYC
+            </li>
+
             <li
               className={profilestate === "Withdrawals" ? "active" : ""}
               onClick={() => {
@@ -427,6 +447,7 @@ const Dashboard_admin = () => {
             setUserData={setUserData}
           />
         )}
+        {profilestate === "KYC" && <KycAdmin />}
         {profilestate === "Withdrawals" && (
           <WithdrawAdmin
             withdrawals={withdrawals}
@@ -472,7 +493,12 @@ const Dashboard_admin = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src="/cloudflare.png" alt="cloudflare" />
+              <Image
+                src="/cloudflare.png"
+                alt="cloudflare"
+                width={40}
+                height={20}
+              />
             </a>
           </p>
         </footer>
@@ -489,6 +515,7 @@ const Dashboard_admin = () => {
         <span></span>
         <span></span>
       </button>
+
       {widgetState.state && (
         <DynamicWidget
           widgetState={widgetState}
@@ -505,7 +532,6 @@ const Dashboard_admin = () => {
           totalROI={totalROI}
         />
       )}
-
       <AnimatePresence>
         {showsidePanel && (
           <motion.div
@@ -518,7 +544,13 @@ const Dashboard_admin = () => {
           >
             <div className="topmostRightPrile">
               <Link href={"/"}>
-                <img src="/xtbLogo.svg" className="theLogo" alt="logo" />
+                <Image
+                  src="/logo1.svg"
+                  alt="logo"
+                  width={60}
+                  height={60}
+                  style={{ marginRight: "200px", marginTop: "30px" }}
+                />
               </Link>
               <div className="panelPrfileDisp">
                 <div
@@ -563,6 +595,16 @@ const Dashboard_admin = () => {
                     }
                   </span>
                 </li>
+                {/* In mobile panel list */}
+                <li
+                  className={profilestate === "KYC" ? "active" : ""}
+                  onClick={() => {
+                    setProfileState("KYC");
+                  }}
+                >
+                  <i className="icofont-id-card"></i> KYC
+                </li>
+
                 <li
                   className={profilestate === "Withdrawals" ? "active" : ""}
                   onClick={() => {
@@ -597,6 +639,33 @@ const Dashboard_admin = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <div
+        id="google_translate_element"
+        style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+      ></div>
+      <Script
+        id="google-translate-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+              {
+                pageLanguage: 'en',
+                includedLanguages: 'en,hr',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+              },
+              'google_translate_element'
+            );
+          }
+        `,
+        }}
+      />
+      <Script
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+        strategy="afterInteractive"
+      />
     </div>
   );
 };

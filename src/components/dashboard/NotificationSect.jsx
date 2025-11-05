@@ -7,184 +7,182 @@ const NotificationSect = ({
   setWidgetState,
   setInvestData,
   currentUser,
-  notifications,
+  notifications = [],
 }) => {
   initializeApp(firebaseConfig);
-
   const db = getFirestore();
 
   const handleDetailUpdate = (vlad) => {
     const docRef = doc(db, "notifications", vlad?.id);
-
     updateDoc(docRef, {
       status: "seen",
-    });
+    }).catch((error) => console.error("Error updating notification:", error));
   };
 
   useEffect(() => {
     notifications.forEach((elem) => {
       handleDetailUpdate(elem);
     });
-  }, []);
+  }, [notifications]);
 
-  const currentDate = new Date();
-
-  const currentDayOfMonth = currentDate.getDate();
-  const currentMonth = currentDate.getMonth();
-  const currentYear = currentDate.getFullYear();
-
-  const dateString =
-    currentYear + "-" + (currentMonth + 1) + "-" + currentDayOfMonth;
-
-  const investProcess = (vlad, clad, blad) => {
+  const investProcess = (plan, capital, duration) => {
     setInvestData({
       idnum: currentUser?.idnum,
-      plan: vlad,
+      plan,
       status: "Pending",
-      capital: clad,
+      capital,
       date: new Date().toISOString(),
-      duration: blad,
+      duration,
       paymentOption: "Bitcoin",
       authStatus: "unseen",
       admin: false,
       roi: 0,
       bonus: 0,
     });
+
     setWidgetState({
       state: true,
       type: "invest",
     });
   };
+
+  const formatDate = (dateTime) => {
+    try {
+      const dateObj = dateTime?.toDate ? dateTime.toDate() : new Date(dateTime);
+      if (isNaN(dateObj)) return "Invalid Time";
+
+      const dateStr = dateObj.toLocaleDateString("en-US", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+
+      const timeStr = new Intl.DateTimeFormat("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(dateObj);
+
+      return `${dateStr} | ${timeStr}`;
+    } catch (err) {
+      return "Invalid Time";
+    }
+  };
+
   return (
     <div className="investmentMainCntn">
       <div className="myinvestmentSection">
-        <h2>Értesítések</h2>
+        <h2>Notifications</h2>
         {notifications.length > 0 ? (
           <div className="historyTable">
             {notifications
               .sort((a, b) => {
-                const dateA = new Date(a.dateTime);
-                const dateB = new Date(b.dateTime);
-  
+                const dateA = new Date(a.dateTime?.toDate?.() || a.dateTime);
+                const dateB = new Date(b.dateTime?.toDate?.() || b.dateTime);
                 return dateB - dateA;
               })
               .map((elem, idx) => (
                 <div className="unitNotif" key={`${elem.idnum}-notiUser${idx}`}>
                   <h4>{elem?.message}</h4>
-                  <p>
-                    {new Date(elem?.dateTime).toLocaleDateString("hu-HU", {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric",
-                    })}{" "}
-                    |{" "}
-                    {new Intl.DateTimeFormat("hu-HU", {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: false,
-                    }).format(new Date(elem?.dateTime))}
-                  </p>
+                  <p>{formatDate(elem?.dateTime)}</p>
                 </div>
               ))}
           </div>
         ) : (
           <div className="emptyTable">
             <i className="icofont-exclamation-tringle"></i>
-            <p>Az értesítési halmaz jelenleg üres.</p>
+            <p>Your notification stack is currently empty.</p>
           </div>
         )}
+
         <section className="Offers" id="Offers">
-          <h2>Elérhető ajánlataink</h2>
+          <h2>Our Available Offers</h2>
           <div className="OffersCntn">
             <div className="unitOffer">
-              <h3>EZÜST</h3>
+              <h3>SILVER</h3>
               <h4>
-                <span>€100</span> <br /> - <br /> <span>€900</span>
+                <span>$100</span> <br /> - <br /> <span>$900</span>
               </h4>
               <ul>
                 <li>
-                  <i className="icofont-tick-mark"></i> <span>5X hozam</span>
+                  <i className="icofont-tick-mark"></i> <span>5X ROI</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>5X bónusz a befektetésre</span>
+                  <span>5X bonus on investment</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>Hozam és bónusz 24 órán belül</span>
+                  <span>Get ROI and bonus in 24 hrs</span>
                 </li>
               </ul>
               <button
                 className="borderBtn"
-                onClick={() => {
-                  investProcess("Silver", 100, 2);
-                }}
+                onClick={() => investProcess("Silver", 100, 2)}
               >
-                Kezdj el nyerni
+                Invest
               </button>
             </div>
+
             <div className="unitOffer fancybg">
               <h3>
-                GYÉMÁNT <i className="icofont-diamond"></i>
+                DIAMOND <i className="icofont-diamond"></i>
               </h3>
               <h4>
-                <span>€10,000</span> <br /> - <br /> <span>€100,000</span>
+                <span>$10,000</span> <br /> - <br /> <span>$100,000</span>
               </h4>
               <ul>
                 <li>
-                  <i className="icofont-tick-mark"></i> <span>5X hozam</span>
+                  <i className="icofont-tick-mark"></i> <span>5X ROI</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>10X bónusz a befektetésre</span>
+                  <span>10X Bonus on investment</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>Hozam és bónusz 7 nap alatt</span>
+                  <span>Get ROI and bonus in 7 Days</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>Hozzáférés 15 digitális pénzügyi forrásunkhoz</span>
+                  <span>Access to 15 digital financial resources</span>
                 </li>
               </ul>
               <button
                 className="fancyBtn"
-                onClick={() => {
-                  investProcess("Diamond", 10000, 7);
-                }}
+                onClick={() => investProcess("Diamond", 10000, 7)}
               >
-                Gazdagodj meg
+                Get Rich
               </button>
             </div>
+
             <div className="unitOffer">
-              <h3>ARANY</h3>
+              <h3>GOLD</h3>
               <h4>
-                <span>€1,000</span> <br /> - <br /> <span>€9,000</span>
+                <span>$1,000</span> <br /> - <br /> <span>$9,000</span>
               </h4>
               <ul>
                 <li>
-                  <i className="icofont-tick-mark"></i> <span>5X hozam</span>
+                  <i className="icofont-tick-mark"></i> <span>5X ROI</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>8X bónusz a befektetésre</span>
+                  <span>8X Bonus on investment</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>Hozam és bónusz 4 nap alatt</span>
+                  <span>Get ROI and bonus in 4 Days</span>
                 </li>
                 <li>
                   <i className="icofont-tick-mark"></i>{" "}
-                  <span>Hozzáférés 5 digitális pénzügyi forrásunkhoz</span>
+                  <span>Access to 5 digital financial resources</span>
                 </li>
               </ul>
               <button
                 className="borderBtn"
-                onClick={() => {
-                  investProcess("Gold", 1000, 5);
-                }}
+                onClick={() => investProcess("Gold", 1000, 5)}
               >
-                Kezdj el nyerni
+                Invest
               </button>
             </div>
           </div>
@@ -192,7 +190,6 @@ const NotificationSect = ({
       </div>
     </div>
   );
-  
 };
 
 export default NotificationSect;

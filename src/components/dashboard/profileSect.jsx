@@ -54,107 +54,66 @@ const ProfileSect = ({ currentUser, setCurrentUser, widgetState, setWidgetState}
             }
         })
     }
-    return (
-      <>
-        <div className="profileMainCntn">
-          <div className="topmostProfileMainDisplay">
-            <h2>üdvözlöm újra.</h2>
-            <div className="profileUtilCntn">
-              <div
-                className="profilepix"
-                style={{ backgroundImage: `url(/${currentUser?.avatar}.png)` }}
-                onClick={() => {
-                  setWidgetState({ ...widgetState, state: true });
-                }}
-              ></div>
-              <div className="profilebasicdata">
-                <h3>{currentUser?.name}</h3>
-                <p>{currentUser?.email}</p>
-              </div>
+  return (
+
+    <>
+      <div className="profileMainCntn">
+        <div className="topmostProfileMainDisplay">
+          <h2>Welcome back, {currentUser?.userName}.</h2>
+          <div className="profileUtilCntn">
+            <div className="profilepix" style={{backgroundImage: `url(/${currentUser?.avatar}.png)`}} onClick={() => {setWidgetState({...widgetState, state: true})}}></div>
+            <div className="profilebasicdata">
+              <h3>{currentUser?.name}</h3>
+              <p>{currentUser?.email}</p>
             </div>
-          </div>
-          <div className="profileEditableDisplay">
-            <h2>Profil adatok</h2>
-            <div className="theFormField">
-              <div className="unitInputField">
-                <label htmlFor="name">Teljes név</label>
-                <input
-                  type="text"
-                  value={currentUser?.name}
-                  onChange={(e) => {
-                    setCurrentUser({ ...currentUser, name: e.target.value });
-                  }}
-                />
-              </div>
-              <div className="unitInputField">
-                <label htmlFor="name">Felhasználónév</label>
-                <input
-                  type="text"
-                  value={currentUser?.userName}
-                  onChange={(e) => {
-                    setCurrentUser({ ...currentUser, userName: e.target.value });
-                  }}
-                />
-              </div>
-              <div className="unitInputField">
-                <label htmlFor="name">E-mail cím</label>
-                <input type="text" disabled value={currentUser?.email} />
-              </div>
-              <div className="unitInputField">
-                <label htmlFor="name">Fiók titkos azonosító</label>
-                <input type="text" disabled value={currentUser?.id} />
-              </div>
-              <div className="unitInputField">
-                <label htmlFor="name">Fiók regisztrációs azonosító</label>
-                <input type="text" disabled value={currentUser?.idnum} />
-              </div>
-            </div>
-            <button type="button" onClick={handleDetailUpdate}>
-              Adatok frissítése
-            </button>
-          </div>
-          <div className="profileEditableDisplay">
-            <h2>Jelszó megváltoztatása</h2>
-            <div className="theFormField">
-              <div className="unitInputField">
-                <label htmlFor="name">Régi jelszó</label>
-                <input
-                  type="text"
-                  onChange={(e) => {
-                    setpasswordchange({ ...passwordchange, old: e.target.value });
-                  }}
-                />
-              </div>
-              <div className="unitInputField">
-                <label htmlFor="name">Új jelszó</label>
-                <input
-                  type={passwordShow ? "text" : "password"}
-                  onChange={(e) => {
-                    setpasswordchange({ ...passwordchange, new: e.target.value });
-                  }}
-                />
-                <span
-                  onClick={() => {
-                    setPasswordShow((prev) => !prev);
-                  }}
-                >
-                  <i
-                    className={`icofont-eye-${!passwordShow ? "alt" : "blocked"}`}
-                  ></i>
-                </span>
-              </div>
-              <p style={{ color: `${passwordchange?.color}` }}>
-                {passwordchange?.msg}
-              </p>
-            </div>
-            <button type="button" onClick={handlePasswordChnage}>
-              Jelszó frissítése
-            </button>
           </div>
         </div>
-      </>
-    );
-    
+        <div className="profileEditableDisplay">
+          <h2>Profile Details</h2>
+          <div className="theFormField">
+            <div className="unitInputField">
+              <label htmlFor="name">Fullname</label>
+              <input type="text" value={currentUser?.name} onChange={(e) => {setCurrentUser({...currentUser, name: e.target.value})}}/>
+            </div>
+            <div className="unitInputField">
+              <label htmlFor="name">Username</label>
+              <input type="text" value={currentUser?.userName} onChange={(e) => {setCurrentUser({...currentUser, userName: e.target.value})}}/>
+            </div>
+            <div className="unitInputField">
+              <label htmlFor="name">Email Address</label>
+              <input type="text" disabled value={currentUser?.email} />
+            </div>
+            <div className="unitInputField">
+              <label htmlFor="name">Account Cryptic Id.</label>
+              <input type="text" disabled value={currentUser?.id} />
+            </div>
+            <div className="unitInputField">
+              <label htmlFor="name">Account Register Id.</label>
+              <input type="text" disabled value={currentUser?.idnum} />
+            </div>
+            
+          </div>
+          <button type="button" onClick={handleDetailUpdate}>Update Details</button>
+        </div>
+        <div className="profileEditableDisplay">
+          <h2>Change Password</h2>
+          <div className="theFormField">
+            <div className="unitInputField">
+              <label htmlFor="name">Old Password</label>
+              <input type="text" onChange={(e) => {setpasswordchange({...passwordchange, old: e.target.value})}}/>
+            </div>
+            <div className="unitInputField">
+              <label htmlFor="name">New Password</label>
+              <input type={passwordShow ? "text": "password"} onChange={(e) => {setpasswordchange({...passwordchange, new: e.target.value})}}/>
+              <span onClick={() => {setPasswordShow(prev => !prev)}}><i className={`icofont-eye-${!passwordShow? "alt": "blocked"}`}></i></span>
+            </div>
+            <p style={{color: `${passwordchange?.color}`}}>{passwordchange?.msg}</p>
+          </div>
+          <button type="button" onClick={handlePasswordChnage}>Update Password</button>
+        </div>
+      </div>
+    </>
+  );
 };
 
 export default ProfileSect;

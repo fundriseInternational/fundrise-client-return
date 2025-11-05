@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
-    <Html lang="hu">
+    <Html lang="en">
       <Head>
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
@@ -14,11 +14,11 @@ export default function Document() {
         ></meta>
         <meta
           name="description"
-          content="Fundrise Global Company is a trusted paying binary and Cryptocurrency trading company. Earn high returns from our proven trading strategies.."
+          content="XTB is a trusted paying binary and Cryptocurrency trading company. Earn high returns from our proven trading strategies.."
         ></meta>
         <meta
           name="keywords"
-          content="Coinbase investment, Fundrise hungary, Fundrise HU.com, binary trading, Broker, forex trading, Investment, forex investment, Trusted investment platforms, EURopean investment platforms,  Hungary investment platforms, UK investment platforms, Paying websites, investment websites, trusted investment platform."
+          content="Coinbase investment, XTB hungary, XTB, binary trading, Broker, forex trading, Investment, forex investment, Trusted investment platforms, EURopean investment platforms,  Hungary investment platforms, UK investment platforms, Paying websites, investment websites, trusted investment platform."
         ></meta>
         <meta name="robots" content="index"></meta>
         <meta property="og:type" content="website"></meta>
@@ -28,13 +28,13 @@ export default function Document() {
         ></meta>
         <meta
           property="og:description"
-          content="Fundrise Global Company is a trusted paying binary and Cryptocurrency trading company. Earn high returns from our proven trading strategies.."
+          content="XTB is a trusted paying binary and Cryptocurrency trading company. Earn high returns from our proven trading strategies.."
         ></meta>
         <meta property="twitter:card" content="summary_large_image"></meta>
         <meta property="twitter:url" content="/"></meta>
-        <link rel="icon" href="/xtbSmall.png" />
-        <link rel="apple-touch-icon" href="/xtbSmall.png" />
-        <meta property="og:image" content="/xtbSmall.png" />
+        <link rel="icon" href="/XTB.WA.svg" />
+        <link rel="apple-touch-icon" href="/XTB.WA.svg" />
+        <meta property="og:image" content="/XTB.WA.svg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

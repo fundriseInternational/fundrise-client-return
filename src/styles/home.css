@@ -52,7 +52,7 @@ section {
 }
 
 nav .logoCntn img {
-  height: 30px;
+  height: 50px;
   object-fit: contain;
   object-position: center;
 }
@@ -1075,14 +1075,136 @@ nav .logoCntn img {
   overflow: hidden;
 }
 
+.testimonies {
+  width: 100%;
+  padding-inline: 20px;
+  align-items: center;
+  padding-block: 8em;
+}
 
+.testimonies > h2 {
+  font-size: 5em;
+  font-weight: 300;
+  color: var(--text-clr1);
+  text-align: center;
+}
+.testimonies > p {
+  font-size: 2.5em;
+  font-weight: 400;
+  color: var(--primary-clr);
+  text-align: center;
+}
 
+.videograndCntn {
+  --carou-gap: 16px;
+  min-width: 300px;
+  width: 100%;
+  max-width: 80vw;
+  margin-inline: auto;
+  position: relative;
+}
 
+.videoTestimonies {
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 23%;
+  gap: var(--carou-gap);
+  margin-top: 4em;
 
+  scroll-snap-type: inline mandatory;
+  scroll-padding-inline: 10px;
+  overscroll-behavior-inline: contain;
 
+  overflow-x: scroll;
+}
 
+.videoTestimonies:has(> .active) > * {
+  opacity: 0.4;
+}
+.videoTestimonies:has(> .active) > .active {
+  opacity: 1;
+}
 
+.videoTestimonies > * {
+  scroll-snap-align: start;
+}
 
+.videoTestimonies::-webkit-scrollbar {
+  display: none;
+}
+
+.unittestimony {
+  aspect-ratio: 1;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--dark-clr2);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.unittestimony.active {
+  opacity: 1;
+}
+
+.unittestimony.active .overlay {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.unittestimony.active:hover .overlay {
+  pointer-events: all;
+  opacity: 1;
+}
+
+.unittestimony > video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.unittestimony .overlay {
+  background-image: linear-gradient(to bottom, #020d253f, #010c22e4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+
+  transition: all 0.3s ease-in-out;
+}
+
+.unittestimony .overlay button {
+  width: 55px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 2px solid var(--text-deco);
+  outline: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+}
+
+.unittestimony .overlay button:hover {
+  transform: scale(1.1);
+}
+
+.unittestimony .overlay button i {
+  font-size: 25px;
+  color: var(--primary-clr);
+}
 
 .videograndCntn .scrollbtncntn {
   width: 100%;
@@ -1348,7 +1470,7 @@ nav .logoCntn img {
 }
 
 .topper img {
-  height: 40px;
+  height: 60px;
   object-fit: contain;
   object-position: center;
 }
