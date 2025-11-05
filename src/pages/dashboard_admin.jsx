@@ -289,7 +289,7 @@ const Dashboard_admin = () => {
       <div id="mobilenone" className="leftProfile">
         <Link href={"/"}>
           <Image
-            src="/logo1.svg"
+            src="/Logo1.svg"
             alt="logo"
             width={100}
             height={100}
@@ -545,7 +545,7 @@ const Dashboard_admin = () => {
             <div className="topmostRightPrile">
               <Link href={"/"}>
                 <Image
-                  src="/logo1.svg"
+                  src="/Logo1.svg"
                   alt="logo"
                   width={60}
                   height={60}

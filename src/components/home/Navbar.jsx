@@ -62,7 +62,7 @@ const Navbar = ({
     <nav>
       <div className="leftBox">
         <Link href={"/"}>
-          <Image src="/logo1.svg" alt="logo" width={50} height={50} />
+          <Image src="/Logo1.svg" alt="logo" width={50} height={50} />
         </Link>
       </div>
       {shownavOptions && (
